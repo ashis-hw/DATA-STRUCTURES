@@ -1,0 +1,51 @@
+/*==========================================EXAMPLE=======================================================*/
+ 
+                    
+
+
+/*=============================================CODE=========================================================*/
+
+public class Solution {
+
+	public static BinaryTreeNode<Integer> buildTree(int[] postOrder, int[] inOrder) {
+		//Your code goes here
+        return treeFromPostIN(inOrder,postOrder,0,inOrder.length-1,0,postOrder.length-1);
+	}
+
+    public static BinaryTreeNode<Integer> treeFromPostIN(int [] in,int [] post,int inS,int inE,int postS,int postE){
+
+        if(inS>inE)
+            return null;
+        if(inS==inE){
+            BinaryTreeNode<Integer> ans = new BinaryTreeNode<>(in[inS]);
+            return ans;
+        }
+
+        int rootData = post[postE];
+        BinaryTreeNode<Integer> root = new BinaryTreeNode<>(rootData);
+        int index=0;
+        for (int i = inS; i <= inE; i++) {
+            if(in[i]==rootData){
+                index=i;
+                break;
+            }
+        }
+
+        int leftInS=inS;
+        int leftInE=index-1;
+        int rightInS=index+1;
+        int rightInE=inE;
+        int leftPostS=postS;
+        int leftPostE=postS+leftInE-leftInS;
+        int rightPostS=leftPostE+1;
+        int rightPostE=postE-1;
+
+        root.left=treeFromPostIN(in,post,leftInS,leftInE,leftPostS,leftPostE);
+        root.right=treeFromPostIN(in,post,rightInS,rightInE,rightPostS,rightPostE);
+        return root;
+	}
+
+}
+
+
+/*=============================================DRYRUN=========================================================*/
