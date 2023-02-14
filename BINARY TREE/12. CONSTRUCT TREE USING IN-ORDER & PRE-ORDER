@@ -1,0 +1,55 @@
+/*==========================================EXAMPLE=======================================================*/
+ 
+                    
+
+
+/*=============================================CODE=========================================================*/
+
+public class Solution {
+
+	public static BinaryTreeNode<Integer> buildTree(int[] preOrder, int[] inOrder) {
+		//Your code goes here
+        BinaryTreeNode<Integer> root=CombinePreIn(preOrder,inOrder,0,preOrder.length-1,0,inOrder.length-1);
+        return root;
+        
+	}
+    
+    public static BinaryTreeNode<Integer> CombinePreIn(int [] pre,int [] in,int p1,int p2,int i1,int i2){
+
+        if(i1>i2)
+            return null;
+
+        if(i1==i2){
+            BinaryTreeNode<Integer> ans= new BinaryTreeNode<>(in[i1]);
+            return ans;
+        }
+
+        int root=pre[p1];
+        int i=i1;
+        int count=0;
+        while (i<=i2){
+            if(in[i]==root)
+                break;
+            i++;
+            count++;
+        }
+        int inorderEnd=i-1;
+        int ls=i1;
+        int le=inorderEnd;
+        int rs=i+1;
+        int re=i2;
+        int pls1=p1+1;
+        int ple1=p1+count;
+        int prs1=ple1+1;
+        int pre1=p2;
+        BinaryTreeNode<Integer> left=CombinePreIn(pre,in,pls1,ple1,ls,le);
+        BinaryTreeNode<Integer> right=CombinePreIn(pre,in,prs1,pre1,rs,re);
+        BinaryTreeNode<Integer> root1=new BinaryTreeNode<>(root);
+        root1.left=left;
+        root1.right=right;
+        return root1;
+	}
+
+}
+
+/*=============================================DRYRUN=========================================================*/
