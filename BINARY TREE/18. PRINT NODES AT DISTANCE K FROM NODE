@@ -1,0 +1,76 @@
+/*==========================================EXAMPLE=======================================================*/
+ 
+                    
+
+
+/*=============================================CODE=========================================================*/
+
+import java.util.*;
+
+class Pair1 {
+	BinaryTreeNode<Integer> node;
+	char ch;
+	Pair1(BinaryTreeNode<Integer> node, char ch) {
+		this.node = node;
+		this.ch = ch;
+	}
+}
+public class Solution {
+
+	public static void nodesAtDistanceK(BinaryTreeNode<Integer> root, int node, int k) {
+	    //Your code goes here
+        
+        ArrayList<Pair1> l1 = nodePath(root,node,'r');
+        for (int i = 0; i < l1.size(); i++) {
+            printAtLevel(l1.get(i).node,k-i,l1.get(i).ch);
+        }
+	}
+    
+    public static void printAtLevel(BinaryTreeNode<Integer> root,int height,char direction){
+
+        if(height<0 || root==null)
+            return;
+
+        if(height==0 && root!=null){
+            System.out.println(root.data);
+            return;
+        }
+
+        if(direction!='L')
+            printAtLevel(root.left,height-1,'z');
+        if(direction!='R')
+            printAtLevel(root.right,height-1,'z');
+    }
+    
+    public static ArrayList<Pair1> nodePath(BinaryTreeNode<Integer> root, int x, char direction){
+        if(root==null){
+            ArrayList<Pair1> l1 = new ArrayList<>();
+            return l1;
+        }
+
+        if(root.data==x){
+            Pair1 o1=new Pair1(root,'z');
+            ArrayList<Pair1> l1 = new ArrayList<>();
+            l1.add(o1);
+            return l1;
+        }
+
+        ArrayList<Pair1> l2 = nodePath(root.left,x,'L');
+        ArrayList<Pair1> l3 = nodePath(root.right,x,'R');
+        if(!l3.isEmpty()){
+            Pair1 p1=new Pair1(root,'R');
+            l3.add(p1);
+        }else if(!l2.isEmpty()){
+            Pair1 p1=new Pair1(root,'L');
+            l2.add(p1);
+        }
+        l2.addAll(l3);
+        return l2;
+    }
+
+}
+
+
+/*=============================================DRYRUN=========================================================*/
+
+
