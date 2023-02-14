@@ -1,0 +1,48 @@
+/*==========================================EXAMPLE=======================================================*/
+ 
+                    
+
+
+/*=============================================CODE=========================================================*/
+
+import java.util.*;
+
+class maxDiameter {
+
+	int maxD;
+	int height;
+}
+public class Solution {
+
+	public static int diameterOfBinaryTree(BinaryTreeNode<Integer> root){
+		//Your code goes here
+        
+        int d=maxDiameter1(root).maxD;
+        return d+1;
+	}
+    
+    public static maxDiameter maxDiameter1(BinaryTreeNode<Integer> root){
+
+        if(root==null){
+
+            maxDiameter o1 = new maxDiameter();
+            o1.height=0;
+            o1.maxD=0;
+            return o1;
+        }
+
+        maxDiameter l1=maxDiameter1(root.left);
+        maxDiameter r1=maxDiameter1(root.right);
+        int h=1+Math.max(l1.height,r1.height);
+        int d=l1.height+r1.height;
+        int maxd=Math.max(d,Math.max(l1.maxD,r1.maxD));
+        maxDiameter ans=new maxDiameter();
+        ans.height=h;
+        ans.maxD=maxd;
+        return ans;
+    }
+	
+}
+
+
+/*=============================================DRYRUN=========================================================*/
