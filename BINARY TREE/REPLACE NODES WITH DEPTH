@@ -1,22 +1,22 @@
 /*==========================================EXAMPLE=======================================================*/
  
-                     
 
-
+ 
 /*=============================================CODE=========================================================*/
 
 public class Solution {
 
-	public static int height(BinaryTreeNode<Integer> root) {
-		//Your code goes here
-		if(root == null){
-			return 0;
-		}
-		int leftChild = 0;
-		int rightChild = 0;
-		leftChild += height(root.left);
-		rightChild += height(root.right);
-		return 1 + Math.max(leftChild, rightChild);
+	public static void changeToDepthTree(BinaryTreeNode<Integer> root) {
+	    //Your code goes here
+     helper(root, 0);
+	}
+
+	public static void helper(BinaryTreeNode<Integer> root, int k) {
+		if (root == null)
+			return;
+		root.data = k;
+		helper(root.left, k + 1);
+		helper(root.right, k + 1);
 	}
 }
 
