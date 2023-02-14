@@ -1,0 +1,32 @@
+/*==========================================EXAMPLE=======================================================*/
+ 
+                    
+
+
+/*=============================================CODE=========================================================*/
+
+public class Solution {
+
+	public static void rootToLeafPathsSumToK(BinaryTreeNode<Integer> root, int k) {
+		//Your code goes here
+        
+        helper1(root,k,"");
+	}
+    
+   public static void helper1(BinaryTreeNode<Integer> root, int k,String s1){
+        
+        if(root==null)
+            return;
+        
+        if(root.left==null && root.right==null){
+            if(k-root.data==0)
+                System.out.println(s1+root.data);
+            return;
+        }
+        	helper1(root.left,k-root.data,s1+root.data+" ");
+        	helper1(root.right,k-root.data,s1+root.data+" ");
+	}
+
+}
+
+/*=============================================DRYRUN=========================================================*/
