@@ -1,0 +1,56 @@
+/*==========================================EXAMPLE=======================================================*/
+ 
+                    
+
+
+/*=============================================CODE=========================================================*/
+
+public class Solution {
+
+	/*
+	 * Binary Tree Node class
+	 * 
+	 * class BinaryTreeNode<T> { T data; BinaryTreeNode<T> left; BinaryTreeNode<T> right;
+	 * 
+	 * public BinaryTreeNode(T data) { this.data = data; } }
+	 */
+
+
+	
+	public static int getLCA(BinaryTreeNode<Integer> root, int a, int b) {
+		if (root == null)
+			return -1;
+
+		if (root.data == a || root.data == b)
+			return root.data;
+
+		if (root.data > a && root.data > b)
+			return getLCA(root.left, a, b);
+		else if (root.data < a && root.data < b)
+			return getLCA(root.right, a, b);
+		else {
+			int l1 = getLCA(root.left, a, b);
+			int r1 = getLCA(root.right, a, b);
+			if (l1 != -1 && r1 != -1)
+				return root.data;
+			else if (l1 != -1)
+				return l1;
+			else if (r1 != -1)
+				return r1;
+		}
+		return -1;
+	}
+}
+
+
+
+/*=============================================DRYRUN=========================================================*/
+
+
+
+
+
+
+
+
+
