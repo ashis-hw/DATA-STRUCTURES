@@ -1,0 +1,41 @@
+/*==========================================EXAMPLE=======================================================*/
+ 
+                    
+
+
+/*=============================================CODE=========================================================*/
+
+import java.util.*;
+public class Solution {
+
+	public static void printLevelWise(BinaryTreeNode<Integer> root) {
+		//Your code goes here
+		 if(root==null)
+            return;
+
+        Queue<BinaryTreeNode<Integer>> q1=new LinkedList<>();
+        q1.add(root);
+        q1.add(null);
+        while (!q1.isEmpty()){
+            BinaryTreeNode<Integer> n1=q1.poll();
+            if(n1==null){
+                if(!q1.isEmpty()){
+                    System.out.println();
+                    q1.add(null);
+                }
+            }else {
+                System.out.print(n1.data+" ");
+                if(n1.left!=null)
+                    q1.add(n1.left);
+                if(n1.right!=null)
+                    q1.add(n1.right);
+            }
+        }
+	}
+	
+}
+
+
+/*=============================================DRYRUN=========================================================*/
+
+
