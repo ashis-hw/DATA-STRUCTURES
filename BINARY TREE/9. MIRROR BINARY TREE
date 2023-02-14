@@ -1,1 +1,28 @@
+/*==========================================EXAMPLE=======================================================*/
+ 
+              
+              
+               
 
+
+
+/*=============================================CODE=========================================================*/
+
+public class Solution {
+
+	public static void mirrorBinaryTree(BinaryTreeNode<Integer> root){
+		//Your code goes here
+		if(root==null)
+            return;
+        
+        BinaryTreeNode x=root.left;
+        root.left=root.right;
+        root.right=x;
+        mirrorBinaryTree(root.left);
+        mirrorBinaryTree(root.right);
+	}
+	
+}
+
+
+/*=============================================DRYRUN=========================================================*/
