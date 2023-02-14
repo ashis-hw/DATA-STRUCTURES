@@ -1,0 +1,74 @@
+/*==========================================EXAMPLE=======================================================*/
+ 
+                    
+
+
+/*=============================================CODE=========================================================*/
+
+import java.util.*;
+
+class LinkedList<T> {
+
+	LinkedListNode<T> head;
+	LinkedListNode<T> tail;
+}
+public class Solution {
+
+	/*
+	 * Binary Tree Node class
+	 * 
+	 * class BinaryTreeNode<T> { T data; BinaryTreeNode<T> left; BinaryTreeNode<T>
+	 * right;
+	 * 
+	 * public BinaryTreeNode(T data) { this.data = data; } }
+	 */
+
+	/*
+	 * LinkedList Node Class
+	 *
+	 * 
+	 * class LinkedListNode<T> { T data; LinkedListNode<T> next;
+	 * 
+	 * public LinkedListNode(T data) { this.data = data; } }
+	 */
+
+	public static LinkedListNode<Integer> constructLinkedList(BinaryTreeNode<Integer> root) {
+
+		LinkedList<Integer> ans = helper(root);
+		return (ans != null) ? ans.head : null;
+
+	}
+
+	public static LinkedList<Integer> helper(BinaryTreeNode<Integer> root) {
+
+		if (root == null) {
+			return null;
+		}
+
+		LinkedList<Integer> l1 = helper(root.left);
+		LinkedListNode<Integer> n1 = new LinkedListNode<>(root.data);
+		LinkedList<Integer> ans = new LinkedList<>();
+		if (l1 == null) {
+			ans.head = n1;
+			ans.tail = n1;
+		} else {
+			l1.tail.next = n1;
+			ans.head = l1.head;
+			ans.tail = n1;
+		}
+		LinkedList<Integer> r1 = helper(root.right);
+		if (r1 != null) {
+			ans.tail.next = r1.head;
+			ans.tail = r1.tail;
+		}
+
+		return ans;
+	}
+}
+
+
+/*=============================================DRYRUN=========================================================*/
+
+
+
+
