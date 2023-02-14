@@ -1,0 +1,23 @@
+/*==========================================EXAMPLE=======================================================*/
+ 
+                     
+
+
+/*=============================================CODE=========================================================*/
+
+public class Solution {
+
+	public static int height(BinaryTreeNode<Integer> root) {
+		//Your code goes here
+		if(root == null){
+			return 0;
+		}
+		int leftChild = 0;
+		int rightChild = 0;
+		leftChild += height(root.left);
+		rightChild += height(root.right);
+		return 1 + Math.max(leftChild, rightChild);
+	}
+}
+
+/*=============================================DRYRUN=========================================================*/
