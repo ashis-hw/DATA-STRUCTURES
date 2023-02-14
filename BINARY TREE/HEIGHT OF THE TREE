@@ -1,0 +1,31 @@
+ /*==========================================EXAMPLE=======================================================*/
+ 
+                       10
+                      /  \
+                    20    30
+                   /    \
+                 40    50
+
+Right side of the tree nodes are[30] so height is 1.
+Right side of the tree nodes are[20,40] or [20,30] so height is 2.
+Hence, the output will be 3.
+
+
+/*=============================================CODE=========================================================*/
+
+public class Solution {
+
+	public static int height(BinaryTreeNode<Integer> root) {
+		//Your code goes here
+		if(root == null){
+			return 0;
+		}
+		int leftChild = 0;
+		int rightChild = 0;
+		leftChild += height(root.left);
+		rightChild += height(root.right);
+		return 1 + Math.max(leftChild, rightChild);
+	}
+}
+
+/*=============================================DRYRUN=========================================================*/
