@@ -1,1 +1,29 @@
+/*---------------------------Example:---------------------------------------*/
+
+                        10
+                      /   \
+                    20     30
+                   /    \
+                 40    50
+
+Hence, the output will be [10,20,40,50,30].
+
+
+/*---------------------------CODE:---------------------------------------*/
+
+
+public class Solution {
+   	
+	public static void preOrder(BinaryTreeNode<Integer> root) {
+		//Your code goes here
+		if (root == null) {
+			return;
+		}
+		System.out.print(root.data+" ");
+        preOrder(root.left);
+        preOrder(root.right);
+	}
+}
+
+/*---------------------------DRYRUN:---------------------------------------*/
 
