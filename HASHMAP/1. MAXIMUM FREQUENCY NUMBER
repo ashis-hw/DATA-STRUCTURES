@@ -1,0 +1,28 @@
+/*==========================================EXAMPLE=======================================================*/
+ 
+                    
+
+
+/*=============================================CODE=========================================================*/
+
+public class Solution {
+
+	public static Pair<Integer, Integer> getMinAndMax(BinaryTreeNode<Integer> root) {
+		//Your code goes here
+		if(root==null){
+            Pair<Integer,Integer> ans=new Pair<>(Integer.MAX_VALUE,Integer.MIN_VALUE);
+            return ans;
+        }
+        
+        Pair<Integer,Integer> p1 = getMinAndMax(root.left);
+        Pair<Integer,Integer> p2 = getMinAndMax(root.right);
+        int min=Math.min(root.data,Math.min(p1.minimum,p2.minimum));
+        int max=Math.max(root.data,Math.max(p1.maximum,p2.maximum));
+        Pair<Integer,Integer> ans1=new Pair<>(min,max);
+        return ans1;
+	}
+	
+}
+
+
+/*=============================================DRYRUN=========================================================*/
