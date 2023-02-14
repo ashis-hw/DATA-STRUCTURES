@@ -1,0 +1,29 @@
+Example:
+                        10
+                      /      \
+                    20      30
+                   /    \
+                 40    50
+
+When we sum up all the nodes data together, [10, 20, 30, 40 50] we get 150. Hence, the output will be 150.
+
+
+
+/*----------------------------------------CODE-----------------------------------------------------------*/
+
+public class Solution {
+
+	public static int getSum(BinaryTreeNode<Integer> root) {
+		//Your code goes here.
+		if (root == null)
+			return 0;
+		return root.data + getSum(root.left) + getSum(root.right);
+		
+	}
+}
+
+
+
+/*----------------------------------------DRYRUN-----------------------------------------------------------*/
+
+
