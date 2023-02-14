@@ -1,0 +1,26 @@
+/*==========================================EXAMPLE=======================================================*/
+ 
+                    
+
+
+/*=============================================CODE=========================================================*/
+
+public class Solution {
+
+	public static void insertDuplicateNode(BinaryTreeNode<Integer> root) {
+		//Your code goes here
+		if(root==null)
+            return;
+        
+        BinaryTreeNode<Integer> duplicate=new BinaryTreeNode<>(root.data);
+        BinaryTreeNode<Integer> left_child=root.left;
+        root.left=duplicate;
+        duplicate.left=left_child;
+        insertDuplicateNode(root.left.left);
+        insertDuplicateNode(root.right);
+	}
+	
+}
+
+
+/*=============================================DRYRUN=========================================================*/
