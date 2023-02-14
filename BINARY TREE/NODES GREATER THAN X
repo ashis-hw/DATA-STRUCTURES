@@ -1,0 +1,25 @@
+/*=========================================EXAMPLE============================================*/
+
+
+
+
+
+
+/*=========================================CODE============================================*/
+
+public class Solution {
+
+	public static int countNodesGreaterThanX(BinaryTreeNode<Integer> root, int x) {
+		//Your code goes here
+		if (root == null)
+			return 0;
+		int count = 0;
+		if (root.data > x)
+			count++;
+		return count + countNodesGreaterThanX(root.left, x) + countNodesGreaterThanX(root.right, x);
+	}
+}
+
+
+
+/*=========================================DRYRUN============================================*/
