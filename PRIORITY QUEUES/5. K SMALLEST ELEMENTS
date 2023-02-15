@@ -1,0 +1,43 @@
+/*==========================================EXAMPLE=======================================================*/
+ 
+                    
+
+
+/*=============================================CODE=========================================================*/
+
+import java.util.*;
+
+public class Solution {
+
+	public static ArrayList<Integer> kSmallest(int n, int[] arr, int k) {
+		// Write your code here
+
+        PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
+        int i=0;
+        for(;i<k;i++){
+            pq.add(arr[i]);
+        }
+        
+        for(;i<arr.length;i++){
+            if(pq.peek()>arr[i]){
+                pq.remove();
+                pq.add(arr[i]);
+            }
+        }
+        
+        ArrayList<Integer> l1 = new ArrayList<>();
+        while(!pq.isEmpty()){
+            l1.add(pq.remove());
+        }
+        
+        return l1;
+	}
+}
+
+
+
+
+/*=============================================DRYRUN=========================================================*/
+
+
+
