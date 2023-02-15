@@ -5,24 +5,43 @@
 
 /*=============================================CODE=========================================================*/
 
+import java.util.*;
 public class Solution {
 
-	public static Pair<Integer, Integer> getMinAndMax(BinaryTreeNode<Integer> root) {
-		//Your code goes here
-		if(root==null){
-            Pair<Integer,Integer> ans=new Pair<>(Integer.MAX_VALUE,Integer.MIN_VALUE);
-            return ans;
-        }
-        
-        Pair<Integer,Integer> p1 = getMinAndMax(root.left);
-        Pair<Integer,Integer> p2 = getMinAndMax(root.right);
-        int min=Math.min(root.data,Math.min(p1.minimum,p2.minimum));
-        int max=Math.max(root.data,Math.max(p1.maximum,p2.maximum));
-        Pair<Integer,Integer> ans1=new Pair<>(min,max);
-        return ans1;
-	}
-	
+    public static int maxFrequencyNumber(int[] arr){ 
+		/* Your class should be named Solution
+		 * Don't write main().
+		 * Don't read input, it is passed as function argument.
+		 * Return output and don't print it.
+	 	 * Taking input and printing output is handled automatically.
+		*/
+		HashMap<Integer, Integer> map = new HashMap<>();
+		for (int i : arr) {
+			if (map.containsKey(i)) {
+				map.put(i, map.get(i) + 1);
+			} else {
+				map.put(i, 1);
+			}
+		}
+
+		int max = Integer.MIN_VALUE;
+		int maxN = -1;
+		// Set<Integer> s=map.keySet();
+		for (int i : arr) {
+			if (map.get(i) > max) {
+				maxN = i;
+				max = map.get(i);
+			}
+		}
+		return maxN;
+    }
 }
 
 
+
+
 /*=============================================DRYRUN=========================================================*/
+
+
+
+
