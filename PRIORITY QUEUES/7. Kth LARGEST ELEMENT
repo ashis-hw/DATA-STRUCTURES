@@ -1,0 +1,37 @@
+/*==========================================EXAMPLE=======================================================*/
+ 
+                    
+
+
+/*=============================================CODE=========================================================*/
+
+import java.util.*;
+
+public class Solution {
+
+	public static int kthLargest(int n, int[] arr, int k) {
+		// Write your code here
+
+		PriorityQueue<Integer> pq = new PriorityQueue<>();
+		int i = 0;
+		for (; i < k; i++) {
+			pq.add(arr[i]);
+		}
+
+		for (; i < arr.length; i++) {
+			if (pq.peek() < arr[i]) {
+				pq.remove();
+				pq.add(arr[i]);
+			}
+		}
+		return pq.remove();
+	}
+}
+
+
+
+
+/*=============================================DRYRUN=========================================================*/
+
+
+
