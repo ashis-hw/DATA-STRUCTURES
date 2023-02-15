@@ -1,0 +1,47 @@
+/*==========================================EXAMPLE=======================================================*/
+ 
+                    
+
+
+/*=============================================CODE=========================================================*/
+
+import java.util.*;
+public class Solution {
+	
+	public static int buyTicket(int arr[], int k) {
+		        
+        Queue<Integer> q=new LinkedList<>();
+        for (int i = 0; i < arr.length; i++) {
+            q.add(i);
+        }
+        PriorityQueue<Integer> pq=new PriorityQueue<>(Collections.reverseOrder());
+        for(int e:arr){
+            pq.add(e);
+        }
+        
+        int time=0;
+        while (!q.isEmpty()){
+            int index=q.peek();
+            if(arr[index]==pq.peek()){
+                time++;
+                pq.remove();
+                int r1=q.remove();
+                if(r1==k){
+                    return time;
+                }
+            }else {
+                int r=q.remove();
+                q.add(r);
+            }
+        }
+        
+        return time;
+	}
+}
+
+
+
+/*=============================================DRYRUN=========================================================*/
+
+
+
