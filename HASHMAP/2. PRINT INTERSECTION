@@ -1,0 +1,44 @@
+/*==========================================EXAMPLE=======================================================*/
+ 
+                    
+
+
+/*=============================================CODE=========================================================*/
+
+import java.util.*;
+
+public class Solution {
+
+	public static void intersection(int[] arr1, int[] arr2) {
+		/*
+		 * Your class should be named Solution
+		 * Don't write main().
+		 * Don't read input, it is passed as function argument.
+		 * Return output and don't print it.
+		 * Taking input and printing output is handled automatically.
+		 */
+
+		HashMap<Integer, Integer> map = new HashMap<>();
+
+		for (int i : arr1) {
+			map.put(i, map.getOrDefault(i, 0) + 1);
+		}
+
+		for (int j = 0; j < arr2.length; j++) {
+
+			if (map.containsKey(arr2[j])) {
+				if (map.get(arr2[j]) > 0) {
+					System.out.print(arr2[j] + " ");
+				}
+				map.put(arr2[j], map.get(arr2[j]) - 1);
+			}
+		}
+	}
+}
+
+
+
+/*=============================================DRYRUN=========================================================*/
+
+
+
