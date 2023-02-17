@@ -1,0 +1,28 @@
+/*==========================================EXAMPLE=======================================================*/
+ 
+                    
+
+
+/*=============================================CODE=========================================================*/
+
+public class Solution {
+	
+	static boolean check(int[] arr,int x, int si){
+		if(arr[si] == x){
+			return true;
+		}
+		else if(si>=arr.length-1){
+			return false;
+		}
+		return check(arr,x,si+1);
+	}
+	public static boolean checkNumber(int input[], int x) {
+        return check(input,x,0);
+	}
+}
+
+
+
+/*=============================================DRYRUN=========================================================*/
+
+
