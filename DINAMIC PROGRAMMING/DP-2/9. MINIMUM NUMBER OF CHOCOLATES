@@ -1,0 +1,47 @@
+/*==========================================EXAMPLE=======================================================*/
+ 
+                    
+
+
+/*=============================================CODE=========================================================*/
+
+public class Solution {
+
+	public static int getMin(int input[], int N) {
+
+		/*
+		 * Your class should be named Solution
+		 * Don't write main().
+		 * Don't read input, it is passed as function argument.
+		 * Return output and don't print it.
+		 * Taking input and printing output is handled automatically.
+		 */
+
+		int[] storage = new int[N];
+		storage[0] = 1;
+		for (int i = 1; i < N; i++) {
+			if (input[i] > input[i - 1])
+				storage[i] = 1 + storage[i - 1];
+			else
+				storage[i] = 1;
+		}
+
+		int sum = storage[N - 1];
+		for (int i = N - 2; i >= 0; i--) {
+			if (input[i] > input[i + 1] && storage[i] <= storage[i + 1]) {
+				storage[i] = 1 + storage[i + 1];
+			}
+			sum += storage[i];
+		}
+
+		return sum;
+	}
+}
+
+
+
+/*=============================================DRYRUN=========================================================*/
+
+
+
+
