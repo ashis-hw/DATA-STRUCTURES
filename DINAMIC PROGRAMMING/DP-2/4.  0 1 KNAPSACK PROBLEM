@@ -1,0 +1,44 @@
+/*==========================================EXAMPLE=======================================================*/
+ 
+                    
+
+
+/*=============================================CODE=========================================================*/
+
+public class Solution {
+
+	public static int knapsack(int[] weights, int[] values, int n, int maxWeight) {
+		// Your code goes here
+
+		return knapsack1(weights, values, 0, maxWeight);
+	}
+
+	public static int knapsack1(int[] weights, int[] values, int n, int maxWeight) {
+		// Your code goes here
+		if (n >= weights.length)
+			return 0;
+
+		if (maxWeight == 0)
+			return 0;
+
+		int v1 = 0;
+		int v2 = 0;
+		if (weights[n] > maxWeight)
+			return knapsack1(weights, values, n + 1, maxWeight);
+		else {
+			v1 = values[n] + knapsack1(weights, values, n + 1, maxWeight - weights[n]);
+			v2 = knapsack1(weights, values, n + 1, maxWeight);
+		}
+		return Math.max(v1, v2);
+	}
+}
+
+
+
+/*=============================================DRYRUN=========================================================*/
+
+
+
+
+
+
