@@ -1,0 +1,77 @@
+/*==========================================EXAMPLE=======================================================*/
+ 
+                    
+
+
+/*=============================================CODE=========================================================*/
+
+public class Solution {
+
+    public static int getMinimumStrength(int[][] grid) {
+
+        // int m=grid.length;
+        // int n=grid[0].length;
+        // int [][] storage=new int[m][n];
+        // for(int i=0;i<m;i++){
+        // for(int j=0;j<n;j++){
+        // storage[i][j]=-1;
+        // }
+        // }
+
+        // return getMinimumStrength(0, 0, grid, storage);
+        int m = grid.length;
+        int n = grid[0].length;
+        int[][] storage = new int[m][n];
+        storage[m - 1][n - 1] = 1;
+        for (int i = n - 2; i >= 0; i--) {
+            int v = storage[m - 1][i + 1] - grid[m - 1][i];
+            storage[m - 1][i] = (v < 1) ? 1 : v;
+        }
+
+        for (int i = m - 2; i >= 0; i--) {
+            int v = storage[i + 1][n - 1] - grid[i][n - 1];
+            storage[i][n - 1] = (v < 1) ? 1 : v;
+        }
+
+        for (int i = m - 2; i >= 0; i--) {
+            for (int j = n - 2; j >= 0; j--) {
+                int v = Math.min(storage[i + 1][j], storage[i][j + 1]) - grid[i][j];
+                storage[i][j] = (v < 1) ? 1 : v;
+            }
+        }
+
+        return storage[0][0];
+    }
+
+    public static int getMinimumStrength(int row, int col, int[][] input, int[][] storage) {
+        if (row >= input.length || col >= input[0].length)
+            return Integer.MAX_VALUE;
+
+        if (row == input.length - 1 && col == input[0].length - 1) {
+            storage[row][col] = 1;
+            return 1;
+        }
+
+        if (storage[row][col] != -1)
+            return storage[row][col];
+
+        int v1 = getMinimumStrength(row + 1, col, input, storage);
+        int v2 = getMinimumStrength(row, col + 1, input, storage);
+        int min_v = Math.min(v1, v2);
+        storage[row][col] = (min_v - input[row][col] < 1) ? 1 : (min_v - input[row][col]);
+        return storage[row][col];
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/*=============================================DRYRUN=========================================================*/
