@@ -1,0 +1,81 @@
+/*==========================================EXAMPLE=======================================================*/
+ 
+                    
+
+
+/*=============================================CODE=========================================================*/
+
+public class Solution {
+    static boolean isSubsetPresent(int[] arr, int n, int sum) {
+
+        /*
+         * Your class should be named Solution
+         * Don't write main().
+         * Don't read input, it is passed as function argument.
+         * Return output and don't print it.
+         * Taking input and printing output is handled automatically.
+         */
+
+        // int [][] s=new int [arr.length+1][sum+1];
+        // for(int i=0;i<s.length;i++){
+        // for(int j=0;j<s[0].length;j++)
+        // s[i][j]=-1;
+        // }
+
+        // return helper1(arr,0,sum,s);
+        // return helper1(arr,0,sum);
+
+        boolean[][] storage = new boolean[n + 1][sum + 1];
+        for (int i = 0; i <= n; i++) {
+            storage[i][0] = true;
+        }
+        for (int i = 1; i <= sum; i++) {
+            storage[n][i] = false;
+        }
+
+        for (int i = n - 1; i >= 0; i--) {
+            for (int j = 1; j <= sum; j++) {
+                if (arr[i] > j) {
+                    // If element at index 'i' > 'j' then simply exclude the element and move to
+                    // next index.
+                    storage[i][j] = storage[i + 1][j];
+                } else {
+                    // If element at index 'i' is <= 'j' then either we can pick it or exclude it.
+                    storage[i][j] = storage[i + 1][j - arr[i]] || storage[i + 1][j];
+                }
+            }
+        }
+
+        return storage[0][sum];
+    }
+
+    private static boolean helper1(int[] arr, int n, int sum, int[][] s) {
+        if (sum == 0)
+            return true;
+        if (n >= arr.length || sum < 0)
+            return false;
+        if (s[n][sum] != -1) {
+            return s[n][sum] == 1;
+        }
+
+        boolean v = helper1(arr, n + 1, sum - arr[n], s) || helper1(arr, n + 1, sum, s);
+        if (v)
+            s[n][sum] = 1;
+        else
+            s[n][sum] = 0;
+
+        return v;
+    }
+
+    private static boolean helper1(int[] arr, int n, int sum) {
+        if (sum == 0)
+            return true;
+        if (n >= arr.length || sum < 0)
+            return false;
+
+        return helper1(arr, n + 1, sum - arr[n]) || helper1(arr, n + 1, sum);
+
+    }
+}
+
+/*=============================================DRYRUN=========================================================*/
